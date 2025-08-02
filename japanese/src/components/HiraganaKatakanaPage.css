@@ -1,0 +1,93 @@
+/* HiraganaKatakanaPage.css */
+
+/* This will be the base for the grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 1rem; /* Adjust the gap as needed */
+  text-align: center;
+}
+
+/* Style for each character cell */
+.character-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0; /* a light gray border */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.character-cell:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the Hiragana character text */
+.char-hiragana {
+  font-size: 2rem; /* Large font size for the character */
+  font-weight: bold;
+  color: #8b5cf6; /* A purple color */
+}
+
+/* Style for the Katakana character text */
+.char-katakana {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #059669; /* An emerald color */
+}
+
+/* Style for the Romaji text */
+.romaji {
+  font-size: 0.875rem; /* Small font size for romaji */
+  color: #6b7280; /* A dark gray color */
+  margin-top: 0.25rem;
+}
+
+/* Tab styles for small screens */
+.tab-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  background-color: #e5e7eb; /* light gray */
+  color: #4b5563; /* dark gray text */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tab-button.active {
+  background-color: #3b82f6; /* blue */
+  color: white;
+}
+
+.tab-button:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.tab-button:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Layout for medium and larger screens */
+@media (min-width: 768px) {
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem; /* Space between the two tables */
+  }
+
+  .half-width {
+    width: 50%;
+  }
+}
