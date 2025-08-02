@@ -13,20 +13,31 @@ const Kanji = (props) => (
   </svg>
 );
 
-const TopicCard = ({ title, description, icon, onClick, color, shadow }) => (
+// The improved TopicCard component.
+const TopicCard = ({ title, description, icon, onClick, color, shadow }) => {
+  return (
     <div
-      className={`p-6 bg-white rounded-2xl border-2 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${color} ${shadow} flex flex-col justify-between`}
+      className={`
+        p-6 rounded-2xl border-2 cursor-pointer 
+        transition-all duration-300 transform 
+        hover:scale-105 hover:shadow-xl 
+        active:scale-95 active:shadow-md
+        ${color} ${shadow} 
+        flex flex-col justify-between 
+        text-white font-['Inter']
+      `}
       onClick={onClick}
     >
       <div className="flex items-center justify-center mb-4">
-        <div className={`p-4 rounded-full ${color}`}>
+        <div className={`p-4 rounded-full bg-white text-gray-800`}>
           {icon}
         </div>
       </div>
-      <h3 className="text-xl font-bold text-gray-800 mb-2 text-center font-['Inter']">{title}</h3>
-      <p className="text-gray-600 text-center text-sm font-['Inter']">{description}</p>
+      <h3 className="text-xl font-bold mb-2 text-center">{title}</h3>
+      <p className="text-center text-sm">{description}</p>
     </div>
-);
+  );
+};
 
 // Main component for the Japanese learning website
 const App = () => {
@@ -34,21 +45,21 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
 
   const HomePage = () => (
-    <div className="flex flex-col items-center justify-center p-6 sm:p-12 h-full">
+    <div className="bg-gray-100 min-h-screen p-8 font-sans antialiased flex items-center justify-center">
       <h1 className="text-4xl sm:text-6xl font-extrabold text-blue-900 mb-8 sm:mb-12 text-center drop-shadow-md font-['Inter']">
         日本語を学びましょう!
       </h1>
       <p className="text-lg sm:text-xl text-gray-700 mb-10 text-center max-w-2xl font-['Inter']">
         Choose a topic to begin your learning journey.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+	  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <TopicCard
           title="Hiragana & Katakana"
           description="View and learn the two Japanese syllabaries."
           icon={<Mic className="w-12 h-12" />}
           onClick={() => setCurrentPage('hiragana-katakana')}
           color="bg-purple-100 border-purple-500 hover:bg-purple-200"
-          shadow="shadow-purple-200"
+          shadow="shadow-purple-201"
         />
         <TopicCard
           title="Kanji Flashcards"
@@ -72,7 +83,7 @@ const App = () => {
           icon={<GraduationCap className="w-12 h-12" />}
           onClick={() => setCurrentPage('pachinko')}
           color="bg-indigo-100 border-indigo-500 hover:bg-indigo-200"
-          shadow="shadow-indigo-200"
+          shadow="shadow-blue-200"
         />
       </div>
     </div>
