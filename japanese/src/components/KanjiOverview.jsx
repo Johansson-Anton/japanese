@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import { jlptKanjiData } from './kanjiData'; // assuming you save the data in a file named kanjiData.js
 
-const KanjiFlashcards = ({ onGoBack }) => {
+const KanjiOverview = ({ onGoBack }) => {
     const [selectedLevel, setSelectedLevel] = useState(null);
     const [selectedKanji, setSelectedKanji] = useState(null);
 
@@ -100,4 +100,4 @@ const KanjiFlashcards = ({ onGoBack }) => {
     );
 };
 
-export default KanjiFlashcards;
+export default KanjiOverview;

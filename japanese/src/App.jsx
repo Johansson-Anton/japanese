@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronLeft, puzzle, BookOpen, Mic } from 'lucide-react';
+import { ChevronLeft, Gamepad2 , BookOpen, Mic, Layers2, BadgeJapaneseYen } from 'lucide-react';
 import HiraganaKatakanaPage from './components/HiraganaKatakanaPage';
 import KanjiFlashcards from './components/KanjiFlashcards';
+import KanjiOverview from './components/KanjiOverview';
 import VocabularyQuiz from './components/VocabularyQuiz';
 import PachinkoGame from './components/PachinkoGame';
 
@@ -62,11 +63,19 @@ const App = () => {
           color="bg-gray-100 border-gray-200 hover:bg-gray-200"
           shadow="shadow-gray-200"
         />
+		<TopicCard
+          title="Kanji Overview"
+          description="Learn the readings and meanings of basic Kanji characters."
+          icon={<BadgeJapaneseYen className="w-12 h-12" />}
+          onClick={() => setCurrentPage('KanjiOverview')}
+          color="bg-gray-100 border-gray-200 hover:bg-gray-200"
+          shadow="shadow-gray-200"
+        />
         <TopicCard
           title="Kanji Flashcards"
-          description="Learn the readings and meanings of basic Kanji characters."
-          icon={<Kanji className="w-12 h-12" />}
-          onClick={() => setCurrentPage('kanji')}
+          description="practice Kanji characters."
+          icon={<Layers2 className="w-12 h-12" />}
+          onClick={() => setCurrentPage('KanjiFlashcards')}
           color="bg-gray-100 border-gray-200 hover:bg-gray-200"
           shadow="shadow-gray-200"
         />
@@ -81,7 +90,7 @@ const App = () => {
         <TopicCard
           title="Pachinko Game"
           description="Relax and play a fun pachinko-style game."
-          icon={<puzzle className="w-12 h-12" />}
+          icon={<Gamepad2 className="w-12 h-12" />}
           onClick={() => setCurrentPage('pachinko')}
           color="bg-gray-100 border-gray-200 hover:bg-gray-200"
           shadow="shadow-gray-200"
@@ -96,7 +105,9 @@ const App = () => {
         return <HomePage />;
       case 'hiragana-katakana':
         return <HiraganaKatakanaPage onGoBack={() => setCurrentPage('home')} />;
-      case 'kanji':
+	  case 'KanjiOverview':
+        return <KanjiOverview onGoBack={() => setCurrentPage('home')} />;
+      case 'KanjiFlashcards':
         return <KanjiFlashcards onGoBack={() => setCurrentPage('home')} />;
       case 'vocabulary':
         return <VocabularyQuiz onGoBack={() => setCurrentPage('home')} />;

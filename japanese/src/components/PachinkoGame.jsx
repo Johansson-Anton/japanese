@@ -59,15 +59,17 @@ const PachinkoGame = ({ onGoBack }) => {
         const wallMaterial = new THREE.MeshStandardMaterial({ color: 0x6b7280 });
         const wallShape = new CANNON.Box(new CANNON.Vec3(1, 10, 1));
         const pegMaterial = new THREE.MeshStandardMaterial({ color: 0x9ca3af });
-        const pegShape = new CANNON.Sphere(0.25);
+        // The peg radius should be smaller to give the balls more space.
+        const pegRadius = 0.2; 
+        const pegShape = new CANNON.Sphere(pegRadius);
 
         const createWalls = () => {
             const wallPositions = [
                 [-7.5, 10, 0],
                 [7.5, 10, 0],
             ];
-            wallPositions.forEach(([x, y, z]) => {
-                const wallMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 20, 1), wallMaterial);
+                wallPositions.forEach(([x, y, z]) => {
+            const wallMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 20, 1), wallMaterial);
                 wallMesh.position.set(x, y, z);
                 wallMesh.castShadow = true;
                 wallMesh.receiveShadow = true;
@@ -80,18 +82,18 @@ const PachinkoGame = ({ onGoBack }) => {
         };
 
         const createPegs = () => {
-            const pegRadius = 0.25;
             const pegGeometry = new THREE.SphereGeometry(pegRadius, 16, 16);
             const pegPositions = [];
 
-            for (let y = 3; y < 18; y += 1) {
-                const rowOffset = (y % 2 === 0) ? 0.5 : 0;
-                for (let x = -6; x <= 6; x += 1) {
-                    if (x + rowOffset > -7 && x + rowOffset < 7) {
+                // The increment has been increased from 1 to 1.3 to spread the pegs further apart
+                for (let y = 3; y < 18; y += 1.3) {
+                const rowOffset = (Math.floor(y / 1.3) % 2 === 0) ? 0.65 : 0;
+                for (let x = -6; x <= 6; x += 1.3) {
+                        if (x + rowOffset > -7 && x + rowOffset < 7) {
                         pegPositions.push(new THREE.Vector3(x + rowOffset, y, 0));
-                    }
+                        }
                 }
-            }
+                }
 
             pegPositions.forEach(pos => {
                 const pegMesh = new THREE.Mesh(pegGeometry, pegMaterial);
@@ -111,7 +113,7 @@ const PachinkoGame = ({ onGoBack }) => {
 
         let balls = [];
         const dropBall = () => {
-            const ballRadius = 0.5;
+            const ballRadius = 0.4;
             const ballGeometry = new THREE.SphereGeometry(ballRadius, 32, 32);
             const ballMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
             const ballMesh = new THREE.Mesh(ballGeometry, ballMaterial);

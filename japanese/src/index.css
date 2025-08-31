@@ -1,6 +1,9 @@
 /* This file contains all necessary CSS, including compiled Tailwind and custom styles.
 You can replace the content of your existing CSS file with this code.
 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
     body {
